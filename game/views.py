@@ -1,9 +1,10 @@
-from django.shortcuts import render , HttpResponseRedirect
+from django.shortcuts import get_object_or_404, render , HttpResponseRedirect
 # from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login,logout
+from .models import Quiz
 
 # Create your views here.
 # register user 
@@ -39,3 +40,11 @@ def user_profile(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/login/')
+
+#*************************************Quiz Endpoints****************************#
+def getQuiz(request, quizId) :   
+    
+    #Getting the quiz
+    quiz = get_object_or_404(Quiz, pk=quizId)
+    
+    return render(request, "Quiz/quiz.html", {"quiz": quiz, "questions": quiz.question_set.all()})
