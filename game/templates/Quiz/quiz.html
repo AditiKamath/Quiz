@@ -15,9 +15,23 @@
             <h3>Total Score: {{quiz.quizScore}}</h3>
             <h3>Total Questions: {{questions|length}}</h3>
         </div>
-        {% for question in questions %}
-            <p>{{question.text}}</p>
-        {% endfor %}
+        <div id="quiz-questions">
+            <form method="POST">
+                {% csrf_token %}
+                {% for question in questions %}
+                    <div class="quiz-question">
+                        <label class="question-title">{{question.text}}</label>
+                        {% for option in question.option_set.all %}
+                            <div class="options">
+                                <input type="radio" name="{{question.id}}" value="{{option.id}}">
+                                <label>{{option.text}}</label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <button type="submit" id="submit-form">Submit Quiz</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

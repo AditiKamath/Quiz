@@ -1,5 +1,5 @@
-from django.shortcuts import get_object_or_404, render , HttpResponseRedirect
-# from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import get_object_or_404, redirect, render , HttpResponseRedirect
+from django.urls import reverse
 from .forms import UserRegistrationForm
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -44,7 +44,34 @@ def user_logout(request):
 #*************************************Quiz Endpoints****************************#
 def getQuiz(request, quizId) :   
     
-    #Getting the quiz
-    quiz = get_object_or_404(Quiz, pk=quizId)
-    
-    return render(request, "Quiz/quiz.html", {"quiz": quiz, "questions": quiz.question_set.all()})
+    if(request.method == "POST"):
+        #Getting the quiz
+        quiz = get_object_or_404(Quiz, pk=quizId)
+        
+        #Calculating the score
+        score = 0
+        for key,value in request.POST.items() :
+            if(key != "csrfmiddlewaretoken") :
+                if(quiz.question_set.get(pk=int(key)).option_set.get(pk=int(value)).isAns) :
+                    score += 1
+
+        #Compiling the results
+        results = []
+        for question in quiz.question_set.all() :
+            results.append([question.text, question.option_set.get(isAns=True).text, question.option_set.get(pk=request.POST[f"{question.id}"]).text])
+            results[-1].append(results[-1][1] == results[-1][2])
+        
+        return render(request, "Quiz/quizResults.html", {"quiz": quiz, "playerScore": score, "results": results})
+
+    else :
+        #Getting the quiz
+        quiz = get_object_or_404(Quiz, pk=quizId)
+
+        #Creating the option map
+        options = {}
+        for question in quiz.question_set.all() :
+            options[question.id] = []
+            for option in question.option_set.all() :
+                options[question.id].append(option)
+        
+        return render(request, "Quiz/quiz.html", {"quiz": quiz, "questions": quiz.question_set.all(), "options": options})
