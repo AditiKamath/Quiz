@@ -1,0 +1,47 @@
+
+ 
+{% block content %}
+ 
+<div class="jumbotron container row">
+    <div class="col-md-6">
+        <h1>Add Question</h1>
+        <div class="card card-body">
+           <form action="" method="POST">
+              {% csrf_token %}
+                <h2>Question</h2>
+                
+                <input type="text" id="ques" name="ques">
+
+                <h2>Option 1</h2>
+                <input type="text" id="op1" name="op1">
+                <h2>Option 2</h2>
+                <input type="text" id="op2" name="op2">
+                <h2>Option 3</h2>
+                <input type="text" id="op3" name="op3">
+                <h2>Option 4</h2>
+                <input type="text" id="op4" name="op4">
+
+                <h2>Answer</h2>
+                <input type="text" id="ans" name="ans">
+
+                <br>
+             <input type="submit" name="Submit">
+             </form>
+            </div>
+        </div>
+
+        
+        <div >
+            {% for question in question%}
+                <h2>{{forloop.counter}} {{question.question}}</h2>
+                <p>a. {{question.op1}}</p>
+                <p>b. {{question.op2}}</p>
+                <p>c. {{question.op3}}</p>
+                <p>d. {{question.op4}}</p>
+            {%endfor%}
+        </div>
+    </div>
+ 
+</div>
+ 
+{% endblock %}
