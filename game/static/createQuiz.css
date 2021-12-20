@@ -1,26 +1,21 @@
-:root {
-    background: #c94b4b;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #4b134f, #c94b4b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-}
-
 * {
     margin: 0;
     box-sizing: border-box;
 }
 
-.background {
+/* .background {
     width: 100vw;
     height: 100%;
-    background-color: #411489;
-}
+    background: url('./Media/bg1.png');
+} */
 
 #c-quiz-bg {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    background: url('./Media/bg1.png');
+    background-size: cover
 }
 
 
@@ -79,6 +74,8 @@
 #add-q-bg {
     display: flex;
     flex-direction: row;
+    background: url('./Media/bg1.png');
+    background-size: cover
 }
 
 

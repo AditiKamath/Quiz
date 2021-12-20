@@ -24,7 +24,7 @@
                         {% for option in question.option_set.all %}
                             <div class="options">
                                 <input type="radio" name="{{question.id}}" value="{{option.id}}">
-                                <label>{{option.text}}</label>
+                                <label id="op-label">{{option.text}}</label>
                             </div>
                         {% endfor %}
                     </div>

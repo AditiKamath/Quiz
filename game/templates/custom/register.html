@@ -8,28 +8,29 @@
     <link rel="stylesheet" type="text/css" href="{% static 'auth.css' %}">
     <title>Register</title>
 </head>
-<body>
+<body id="auth-body">
     <div class ="d-flex justify-content-center"id='register_container'>
-        <h2 id='signup_title'>Sign-Up</h2>
-    <div id='form_container' class ="d-flex justify-content-center">
-    <form id='register_form' action="" method="post" novalidate>
-        {%csrf_token %}
-        {% for fm in form%}
-        {{fm.label_tag}} {{fm}}
-        <br> <br>{{fm.errors|striptags}}
-        {%endfor%}
-        {% if form.non_field_errors%}
-        {% for e in form.non_field_errors %}
-           <p class="error">{{e}}</p> 
-        {% endfor %}
-        {% endif %}
         
-        <input id="register_btn" type="submit" value="Register" />
-    </form>
-    <h4>Already a member?<a href="{%url 'user_login'%}">Sign In </a></h4>
-   
-</div>
-</div>
+        <div id='form_container' class ="d-flex justify-content-center">
+            <h2 id='signup_title'>Sign-Up</h2>
+            <form id='register_form' action="" method="post" novalidate>
+                {%csrf_token %}
+                {% for fm in form%}
+                {{fm.label_tag}} {{fm}}
+                <br> <br>{{fm.errors|striptags}}
+                {%endfor%}
+                {% if form.non_field_errors%}
+                {% for e in form.non_field_errors %}
+                <p class="error">{{e}}</p> 
+                {% endfor %}
+                {% endif %}
+                
+                <input id="register_btn" type="submit" value="Register" />
+            </form>
+            <h4>Already a member?<a href="{%url 'user_login'%}">Sign In </a></h4>
+    
+        </div>
+    </div>
     {% if messages %}
     {% for m in messages %}
         <small  {%if m.tags %} class = "{{m.tags}}" {% endif %}>{{m}}</small>

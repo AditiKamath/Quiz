@@ -1,8 +1,13 @@
-:root {
-    background: #c94b4b;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #4b134f, #c94b4b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+#auth-body {
+    background: url('./Media/bg1.png');
+    margin: 0;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
 }
+
+
 form{
     display:block;
 }
@@ -17,11 +22,13 @@ input{
     font-size:16px;
     padding: 8px;
     border-width:0.5px;
-    border-radius: 8px;
+    border-radius: 5px;
     box-sizing: border-box;
+    width: 270px;
 }
 
 #register_container{
+    align-self: center;
     width: 100%;
     display:block;
     max-width: 330px;
@@ -36,8 +43,7 @@ input{
  }
 #signup_title{
     align-items:center;
-    color: black;
-    padding-left:130px;
+    margin-bottom: 25px;
 }
 img {
     border-radius: 50%;
@@ -45,12 +51,13 @@ img {
 
 label {
     cursor: pointer;
-    color: #7F00FF;
     font-size:16px;
     font-family: 'Times New Roman', Times, serif;
     display: block;
     padding: 10px;
     margin: 3px;
+    margin-left: -200px;
+    margin-top: -15px;
 }
 
 

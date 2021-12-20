@@ -8,28 +8,28 @@
     <link rel="stylesheet" type="text/css" href="{% static 'auth.css' %}">
     <title>Login</title>
 </head>
-<body>
-    <div class ="d-flex justify-content-center"id='register_container'>
-        <h2 id='signup_title'>Login</h2>
+<body id="auth-body">
+    <div class ="d-flex justify-content-center" id='register_container'>
         <div id='form_container' class ="d-flex justify-content-center">
-    <form id='register_form' action="" method="post" >
-        {% csrf_token %}
+            <h2 id='signup_title'>Login</h2>
+            <form id='register_form' action="" method="post" >
+                {% csrf_token %}
 
-        {% for fm in form %}
-        {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br> <br>
-        {% endfor %}
-        {% if form.non_field_errors%}
-        {% for e in form.non_field_errors %}
-           <p class="error">{{e}}</p> 
-        {% endfor %}
-        {% endif %}
-        
-        <input id='login_btn' type="submit" value="Login">
-        <br>
-    </form>
-    <h4>If not registered Sign up here!<a href="{%url 'register'%}">Sign up</a></h4>
+                {% for fm in form %}
+                {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br> <br>
+                {% endfor %}
+                {% if form.non_field_errors%}
+                {% for e in form.non_field_errors %}
+                <p class="error">{{e}}</p> 
+                {% endfor %}
+                {% endif %}
+                
+                <input id='login_btn' type="submit" value="Login">
+            
+            </form>
+            <h4>If not registered Sign up here!<a href="{%url 'register'%}">Sign up</a></h4>
    
-    </div>
+        </div>
     </div>
 </body>
 </html>
