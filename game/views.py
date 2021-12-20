@@ -42,7 +42,7 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/login/')
 
-
+"""
 #create quiz
 def createQuiz(request):
     if(request.method == 'GET'):
@@ -74,7 +74,7 @@ def addQuestion(request, id):
         ques_model = QuesModel.objects.create(quiz_name = quiz_name, question=question, op1 = op1, op2 = op2, op3 = op3, op4 = op4, ans = ans)
 
         return HttpResponseRedirect('/addQuestion/' + str(id) + '/')
-    
+"""
 
 #*************************************Quiz Endpoints****************************#
 def getQuiz(request, quizId) :   
@@ -111,3 +111,17 @@ def getQuiz(request, quizId) :
         
         return render(request, "Quiz/quiz.html", {"quiz": quiz, "questions": quiz.question_set.all(), "options": options})
 
+
+def quizList(request) :
+
+    if(request.method == "POST") :
+        quizId = ""
+        for key, value in  request.POST.items() :
+            if(key != "csrfmiddlewaretoken") :
+                quizId = key
+        
+        return redirect(f"/quiz/{quizId}")
+    
+    quizes = Quiz.objects.all()
+
+    return render(request, "Quiz/quizList.html", {"quizes": quizes})
