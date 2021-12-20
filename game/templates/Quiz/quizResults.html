@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz.css' %}">
+    <title>Quiz {{quiz.id}} - Results</title>
+</head>
+
+<body>
+    <div class="background" id="quiz-bg">
+        <div class="quiz-titlebar">
+            <h1>{{quiz.quizName}}</h1>
+            <h3>Total Score: {{quiz.quizScore}}</h3>
+            <h3>Your Score: {{playerScore}}</h3>
+        </div>
+        <div id="quiz-questions">
+            {% for result in results %}
+                <h1 style="margin-top: 20px;">{{result.0}}</h1>
+                <h2 style="color: green;">Correct Answer: {{result.1}}</h2>
+                {% if result.3 %}
+                    <h2 style="color: green;">Your Answer: {{result.2}}</h2>
+                {% else %}
+                    <h2 style="color: red;">Your Answer: {{result.2}}</h2>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>

@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'auth.css' %}">
     <title>Login</title>
 </head>
 <body>
-    <form action="" method="post" >
+    <div class ="d-flex justify-content-center"id='register_container'>
+        <h2 id='signup_title'>Login</h2>
+        <div id='form_container' class ="d-flex justify-content-center">
+    <form id='register_form' action="" method="post" >
         {% csrf_token %}
-    
+
         {% for fm in form %}
         {{fm.label_tag}} {{fm}} {{fm.errors|striptags}} <br> <br>
         {% endfor %}
@@ -19,8 +24,12 @@
         {% endfor %}
         {% endif %}
         
-        <input type="submit" value="Login">
+        <input id='login_btn' type="submit" value="Login">
+        <br>
     </form>
-    <a href="{%url 'register'%}"> Signup </a>
+    <h4>If not registered Sign up here!<a href="{%url 'register'%}">Sign up</a></h4>
+   
+    </div>
+    </div>
 </body>
 </html>

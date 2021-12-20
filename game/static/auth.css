@@ -1,0 +1,69 @@
+:root {
+    --bg-gradient-start : #7F00FF;
+    --bg-gradient-end: #E100FF;
+}
+body {
+    background: #8A2387;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #F27121, #E94057, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+form{
+    display:block;
+}
+a{
+    color: white !important;
+    font-size: 16px;
+    display: inline-block;
+    padding-left:20px
+   
+}
+input{
+    font-size:16px;
+    padding: 8px;
+    border-width:0.5px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+#register_container{
+    width: 100%;
+    display:block;
+    max-width: 330px;
+    padding:8px;
+    margin: 0 auto;
+}
+#register_form {
+    padding: 10px;
+    background-color: white;
+    text-align: center;
+    border-radius: 20px;
+ }
+#signup_title{
+    align-items:center;
+    color: black;
+    padding-left:130px;
+}
+label {
+    cursor: pointer;
+    color: #7F00FF;
+    font-size:16px;
+    font-family: 'Times New Roman', Times, serif;
+    display: block;
+    padding: 10px;
+    margin: 3px;
+}
+
+
+#register_btn , #login_btn {
+    margin:20px;
+    border-color: white;
+    border-radius: 12px;
+    font-size:16px;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    background-color: #E94057;
+
+}
