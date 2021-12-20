@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from game.models import NewQuiz, QuesModel
+from game.models import *
 
 # Register your models here.
-admin.site.register(NewQuiz)
-admin.site.register(QuesModel)
+admin.site.register(Quiz)
+admin.site.register(Question)
+admin.site.register(Option)
