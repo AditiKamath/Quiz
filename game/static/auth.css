@@ -1,18 +1,13 @@
 :root {
-    --bg-gradient-start : #7F00FF;
-    --bg-gradient-end: #E100FF;
-}
-body {
-    background: #8A2387;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #F27121, #E94057, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: #c94b4b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4b134f, #c94b4b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 form{
     display:block;
 }
 a{
-    color: white !important;
+    color: blue !important;
     font-size: 16px;
     display: inline-block;
     padding-left:20px
@@ -33,7 +28,7 @@ input{
     padding:8px;
     margin: 0 auto;
 }
-#register_form {
+#form_container {
     padding: 10px;
     background-color: white;
     text-align: center;
@@ -44,6 +39,10 @@ input{
     color: black;
     padding-left:130px;
 }
+img {
+    border-radius: 50%;
+  }
+
 label {
     cursor: pointer;
     color: #7F00FF;
@@ -55,7 +54,7 @@ label {
 }
 
 
-#register_btn , #login_btn {
+#register_btn , #login_btn , #logout_btn {
     margin:20px;
     border-color: white;
     border-radius: 12px;

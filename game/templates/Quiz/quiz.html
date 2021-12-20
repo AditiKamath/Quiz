@@ -20,7 +20,7 @@
                 {% csrf_token %}
                 {% for question in questions %}
                     <div class="quiz-question">
-                        <label class="question-title">{{question.text}}</label>
+                        <label class="question-title">{{forloop.counter}}. {{question.text}}</label>
                         {% for option in question.option_set.all %}
                             <div class="options">
                                 <input type="radio" name="{{question.id}}" value="{{option.id}}">

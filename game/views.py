@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, redirect, render , HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render , HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .forms import UserRegistrationForm
 from django.contrib import messages
@@ -21,7 +21,7 @@ def register(request):
             form =UserRegistrationForm()
         return render(request, 'custom/register.html',{'form':form})
     else :
-        return HttpResponseRedirect('/profile/')
+        return HttpResponseRedirect('/quizlist')
 
 # Login 
 def user_login(request):
@@ -33,7 +33,7 @@ def user_login(request):
             user = authenticate(username = uname, password = upass)
             if user is not None :
                 login(request, user)
-                return HttpResponseRedirect('/profile/')
+                return HttpResponseRedirect('/quizlist')
     else : 
         form = AuthenticationForm()
     return render(request,'custom/user_login.html',{'form':form})
@@ -48,7 +48,7 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/login/')
 
-"""
+
 #create quiz
 def createQuiz(request):
     if(request.method == 'GET'):
@@ -56,16 +56,30 @@ def createQuiz(request):
     
     if(request.method == 'POST'):
         quiz_name = request.POST['q_name']
-        new_quiz = NewQuiz.objects.create(quiz_name = quiz_name)
+        new_quiz = Quiz.objects.create(quizName = quiz_name)
         return HttpResponseRedirect('/addQuestion/' + str(new_quiz.id) + '/')
     
 
 #add question
 def addQuestion(request, id):    
     if(request.method == 'GET'):
-        quiz_name = NewQuiz.objects.get(id=id)
-        question = QuesModel.objects.filter(quiz_name = quiz_name)
-        return render(request,'Quiz/addQuestion.html', {"question":question}) 
+        quiz = Quiz.objects.get(id=id)
+        question = Question.objects.filter(parentQuiz = quiz)
+        lst = []
+        for i in question:
+            option_text = []
+            option = Option.objects.filter(parentQuestion = i)
+            count = 0
+            for j in option:
+                count=count+1
+                option_text.append(j.text)
+                if j.isAns:
+                    answer = count
+            required = (i.text,option_text,answer)
+            lst.append(required)
+            #(question,option,answer)
+        return render(request,'Quiz/addQuestion.html', {"lst":lst}) 
+      
 
 
 
@@ -76,11 +90,21 @@ def addQuestion(request, id):
         op3 = request.POST['op3']
         op4 = request.POST['op4']
         ans = request.POST['ans']
-        quiz_name = NewQuiz.objects.get(id=id)
-        ques_model = QuesModel.objects.create(quiz_name = quiz_name, question=question, op1 = op1, op2 = op2, op3 = op3, op4 = op4, ans = ans)
-
+        quiz = Quiz.objects.get(id=id)
+        question = Question.objects.create(parentQuiz = quiz,text = question)
+        lst = [op1,op2,op3,op4]
+        count = 0
+        for i in lst:
+            count = count+1
+            if i=="":
+                continue
+            else:
+                if int(count)==int(ans):
+                    Option.objects.create(parentQuestion=question,text=i,isAns=True)
+                else:
+                    Option.objects.create(parentQuestion=question,text=i,isAns=False)
         return HttpResponseRedirect('/addQuestion/' + str(id) + '/')
-"""
+
 
 #*************************************Quiz Endpoints****************************#
 def getQuiz(request, quizId) :   

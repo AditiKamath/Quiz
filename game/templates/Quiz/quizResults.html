@@ -11,14 +11,19 @@
 
 <body>
     <div class="background" id="quiz-bg">
+        <div id='container' >
+            <a href="{% url 'quizList' %}"> <input id='return_to_quiz' type="button" value="Return to Quiz List" /></a>
+        </div>
         <div class="quiz-titlebar">
+         
             <h1>{{quiz.quizName}}</h1>
             <h3>Total Score: {{quiz.quizScore}}</h3>
             <h3>Your Score: {{playerScore}}</h3>
         </div>
         <div id="quiz-questions">
             {% for result in results %}
-                <h1 style="margin-top: 20px;">{{result.0}}</h1>
+        
+                <h1 style="margin-top: 20px;">{{forloop.counter}}. {{result.0}}</h1>
                 <h2 style="color: green;">Correct Answer: {{result.1}}</h2>
                 {% if result.3 %}
                     <h2 style="color: green;">Your Answer: {{result.2}}</h2>

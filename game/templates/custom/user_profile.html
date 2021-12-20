@@ -6,12 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'auth.css' %}">
-    <title>User profile</title>
+    <title>Profile</title>
 </head>
 <body>
     <h3>Profile Page</h3>
-    <h4>Welcome {{name}}</h4>
-    <a href="{% url 'logout' %}">Logout</a>
+   
+    <div id='container'>
+        <div id='profile_img'>
+            <img id='default_profile' src="{% static 'ghost.png'%}" alt="new user" width="30" height="30" style='float:left;'>
+            <h4>Welcome {{name}}</h4>
+        </div>
+ 
+     
+   
+    </div>
+    <a href="{% url 'logout' %}"> <input id='login_btn' type="button" value="Logout" /></a>
     <a href="{% url 'createQuiz' %}"> Create Quiz</a>
+    <a href="{% url 'quizList' %}">Quiz List</a>
+    <div id='user_quiz'>
+        <h3>Quiz created by you</h3> 
+
+    </div>
 </body>
 </html>

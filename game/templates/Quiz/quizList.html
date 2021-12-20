@@ -9,7 +9,13 @@
     <title>Quiz {{quiz.id}}</title>
 </head>
 <body>
+  
     <div class="background" id="quiz-bg">
+        <div id='container' >
+            <a href="{% url 'createQuiz' %}"> <input id='create_quiz_btn' type="button" value="Create Quiz" /></a>
+            <a href="{% url 'logout' %}"> <input id='logout_btn' type="button" value="Logout" /></a>
+         
+        </div>
         <div class="quiz-titlebar" style="justify-content: center;">
             <h1>Select Quiz</h1>
         </div>
@@ -21,7 +27,7 @@
                 {% endfor %}
             </form>
         </div>
-        
+      
     </div>
 </body>
 </html>

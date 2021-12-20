@@ -5,7 +5,7 @@ from django.db.models.deletion import CASCADE
 # Create your models here.
 class Quiz(models.Model) :
     quizName = models.CharField(max_length=100)
-    quizScore = models.IntegerField()
+    quizScore = models.IntegerField(null=True, blank=True)
 
 class Question(models.Model) :
     parentQuiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
@@ -17,7 +17,7 @@ class Option(models.Model) :
     isAns = models.BooleanField() 
 
 
-"""
+
 class NewQuiz(models.Model):
     quiz_name = models.CharField(max_length=100)
     
@@ -36,4 +36,4 @@ class QuesModel(models.Model):
     
     def __str__(self):
         return self.question
-"""
+
