@@ -79,3 +79,17 @@
     font-size: 20px;
     padding: 10px;
 }
+
+.quiz-list-btn {
+    width: 100%;
+    font-size: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    font-weight: bolder;
+    background-color: var(--bg-gradient-start);
+    color: white;
+}
+
+.quiz-list-btn:hover {
+    background-color: var(--bg-gradient-end);
+}

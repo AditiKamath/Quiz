@@ -98,7 +98,7 @@ def addQuestion(request, id):
                 else:
                     Option.objects.create(parentQuestion=question,text=i,isAns=False)
         return HttpResponseRedirect('/addQuestion/' + str(id) + '/')
-    
+
 
 #*************************************Quiz Endpoints****************************#
 def getQuiz(request, quizId) :   
@@ -135,3 +135,17 @@ def getQuiz(request, quizId) :
         
         return render(request, "Quiz/quiz.html", {"quiz": quiz, "questions": quiz.question_set.all(), "options": options})
 
+
+def quizList(request) :
+
+    if(request.method == "POST") :
+        quizId = ""
+        for key, value in  request.POST.items() :
+            if(key != "csrfmiddlewaretoken") :
+                quizId = key
+        
+        return redirect(f"/quiz/{quizId}")
+    
+    quizes = Quiz.objects.all()
+
+    return render(request, "Quiz/quizList.html", {"quizes": quizes})

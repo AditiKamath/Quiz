@@ -17,7 +17,7 @@ class Option(models.Model) :
     isAns = models.BooleanField() 
 
 
-
+"""
 class NewQuiz(models.Model):
     quiz_name = models.CharField(max_length=100)
     
@@ -36,3 +36,4 @@ class QuesModel(models.Model):
     
     def __str__(self):
         return self.question
+"""
